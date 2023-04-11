@@ -1,0 +1,25 @@
+/* font-family: 'Lato', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Roboto', sans-serif; */
+
+.container {
+  max-width: 575px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.column-full {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  header {
+    max-height: 95px;
+    padding: 20px;
+  }
+}

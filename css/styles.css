@@ -1,0 +1,38 @@
+body {
+  background-color: #16203a;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1d336b;
+  padding: 7px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-height: 75px;
+}
+
+.logo img {
+  width: 70px;
+  margin: 5px 15px 0;
+}
+
+.nav-links {
+  display: flex;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  margin: 0 50px;
+}
+
+a {
+  margin: 0 10px;
+  color: #00d1ff;
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.home-nav {
+  margin-right: 30px;
+}
