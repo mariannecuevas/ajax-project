@@ -15,46 +15,54 @@
     rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <header class="row column-full">
-      <div class="logo">
-        <img src="images/f2p-logo.png" alt="logo">
-      </div>
-      <div class="nav-links">
-        <a href="#" data-view="home" class="home-nav">Home</a>
-        <a href="#" data-view="faves" class="faves-nav">Favorites</a>
-      </div>
-    </header>
-  </div>
-  <main class="container">
-    <div class="description">
-      <h1>Free-to-Play Game Finder</h1>
-      <h3>Looking for Free-to-Play games?</h3>
-      <h3>Choose a genre and click Start!</h3>
+  <header class="column-full">
+    <div class="logo">
+      <img src="images/f2p-logo.png" alt="logo">
     </div>
-    <div class="drop-down">
-      <label for="genres">Select a genre</label>
-      <select name="genre" id="genres">
-        <option value="genre">Genre</option>
-        <option value="shooter">Shooter</option>
-        <option value="MMOARPG">MMOARPG</option>
-        <option value="ARPG">ARPG</option>
-        <option value="strategy">Strategy</option>
-        <option value="MMORPG">MMORPG</option>
-        <option value="fighting">Fighting</option>
-        <option value="action-RPG">Action RPG</option>
-        <option value="battle-royale">Battle Royal</option>
-        <option value="MOBA">MOBA</option>
-        <option value="racing">Racing</option>
-        <option value="card-game">Card Game</option>
-        <option value="sports">Sports</option>
-        <option value="MMO">MMO</option>
-        <option value="social">Social</option>
-        <option value="fantasy">Fantasy</option>
-      </select>
+    <div class="nav-links">
+      <a href="#" data-view="home" class="home-nav">Home</a>
+      <a href="#" data-view="faves" class="faves-nav">Favorites</a>
     </div>
-    <div class="start-btn">
-      <button class="start">Start</button>
+  </header>
+  <main>
+    <div class="container">
+      <div class="title row column-full">
+        <h2>Free-to-Play Game Finder</h2>
+      </div>
+      <div class="description row column-full">
+        <p>Looking for Free-to-Play games?</p>
+      </div>
+      <div class="instructions row column-full">
+        <p>Choose a genre and click Start!</p>
+      </div>
+      <div class="dropdown">
+        <div class="label row column-full">
+          <label for="genres">Select a genre</label>
+        </div>
+        <div class="genres row column-full">
+          <select name="genre" id="genres">
+            <option value="genre">Genre</option>
+            <option value="shooter">Shooter</option>
+            <option value="MMOARPG">MMOARPG</option>
+            <option value="ARPG">ARPG</option>
+            <option value="strategy">Strategy</option>
+            <option value="MMORPG">MMORPG</option>
+            <option value="fighting">Fighting</option>
+            <option value="action-RPG">Action RPG</option>
+            <option value="battle-royale">Battle Royal</option>
+            <option value="MOBA">MOBA</option>
+            <option value="racing">Racing</option>
+            <option value="card-game">Card Game</option>
+            <option value="sports">Sports</option>
+            <option value="MMO">MMO</option>
+            <option value="social">Social</option>
+            <option value="fantasy">Fantasy</option>
+          </select>
+        </div>
+      </div>
+      <div class="start-btn row column-full">
+        <button class="start">Start</button>
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>

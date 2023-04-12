@@ -8,13 +8,19 @@ font-family: 'Roboto', sans-serif; */
   padding: 0;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .column-full {
   width: 100%;
 }
 
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 100%;
+    max-width: 700px;
     padding: 0;
   }
 

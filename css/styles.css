@@ -1,5 +1,6 @@
 body {
   background-color: #16203a;
+  font-family: "Open Sans", sans-serif;
 }
 
 header {
@@ -35,4 +36,54 @@ a {
 
 .home-nav {
   margin-right: 30px;
+}
+
+h2 {
+  color: #00d1ff;
+  margin: 75px 0 10px;
+}
+
+div.label > label {
+  margin-right: 95px;
+  margin-bottom: 5px;
+}
+
+p,
+div.label > label {
+  color: white;
+}
+
+div.description > p {
+  margin: 0;
+}
+
+div.instructions > p {
+  margin: 0 0 7rem;
+}
+
+select {
+  cursor: pointer;
+  width: 200px;
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgb(204, 204, 204);
+  transition: all 0.5s ease;
+  font-size: 16px;
+  color: #474747;
+  padding: 3px 20px 3px 0;
+  text-align: left;
+  height: 100%;
+}
+
+button.start {
+  letter-spacing: 0.5px;
+  color: white;
+  background-color: #00a6ca;
+  margin-top: 40px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 40px;
+  cursor: pointer;
 }
