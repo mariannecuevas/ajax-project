@@ -8,6 +8,12 @@ xhr.responseType = 'json';
 
 const startBtn = document.querySelector('.start');
 
+function getRandomGame(filteredGenre) {
+  const randomIndex = Math.floor(Math.random() * filteredGenre.length);
+  const randomGame = filteredGenre[randomIndex];
+  return randomGame;
+}
+
 const filteredGenre = [];
 xhr.addEventListener('load', function () {
   startBtn.addEventListener('click', function () {
@@ -20,6 +26,7 @@ xhr.addEventListener('load', function () {
         filteredGenre.push(xhr.response[i]);
       }
     }
+    getRandomGame(filteredGenre);
   });
 });
 
