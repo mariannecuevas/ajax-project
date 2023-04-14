@@ -2,10 +2,28 @@
 font-family: 'Open Sans', sans-serif;
 font-family: 'Roboto', sans-serif; */
 
+.hidden {
+  display: none !important;
+}
+
 .container {
   max-width: 575px;
   margin: 0 auto;
   padding: 0;
+}
+
+.game-container {
+  max-width: 390px;
+  margin: 0 auto;
+  padding: 35px;
+}
+
+.game-row {
+  max-width: 365px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .row {
@@ -20,8 +38,13 @@ font-family: 'Roboto', sans-serif; */
 
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 900px;
+    max-width: 700px;
     padding: 0;
+  }
+
+  .game-container {
+    max-width: 600px;
+    padding: 55px 0;
   }
 
   header {
