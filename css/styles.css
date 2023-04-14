@@ -113,3 +113,7 @@ button.next {
   padding: 10px 40px;
   cursor: pointer;
 }
+
+.fav-star {
+  color: #00d1ff;
+}
