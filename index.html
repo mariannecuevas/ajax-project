@@ -4,15 +4,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
-  <link rel="icon" href="images/favicon.ico">
+  <link rel="icon" href="images/logo-min.png">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;500;600;700;800&family=Roboto:wght@400;500;700;900&display=swap"
+    rel="stylesheet">
 </head>
 <body>
-  <header>
+  <header class="column-full">
+    <div class="logo">
+      <img src="images/f2p-logo.png" alt="logo">
+    </div>
+    <div class="nav-links">
+      <a href="#" data-view="home" class="home-nav">Home</a>
+      <a href="#" data-view="faves" class="faves-nav">Favorites</a>
+    </div>
   </header>
   <main>
+    <div class="title row column-full">
+      <h2>Free-to-Play Game Finder</h2>
+    </div>
+    <div class="container" data-view="homepage">
+      <div class="description row column-full">
+        <p>Looking for Free-to-Play games?</p>
+      </div>
+      <div class="instructions row column-full">
+        <p>Choose a genre and click Start!</p>
+      </div>
+      <div class="dropdown">
+        <div class="label row column-full">
+          <label for="genres">Select a genre</label>
+        </div>
+        <div class="genres row column-full">
+          <select name="genre" id="genres">
+            <option value="genre">Genre</option>
+            <option value="shooter">Shooter</option>
+            <option value="strategy">Strategy</option>
+            <option value="MMORPG">MMORPG</option>
+            <option value="fighting">Fighting</option>
+            <option value="battle-royale">Battle Royale</option>
+            <option value="MOBA">MOBA</option>
+            <option value="racing">Racing</option>
+            <option value="card-game">Card Game</option>
+            <option value="sports">Sports</option>
+            <option value="MMO">MMO</option>
+            <option value="social">Social</option>
+          </select>
+        </div>
+      </div>
+      <div class="start-btn row column-full">
+        <button class="start">Start</button>
+      </div>
+    </div>
+    <div class="game-container hidden" data-view="game-details">
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
