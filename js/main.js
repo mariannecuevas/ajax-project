@@ -11,6 +11,7 @@ var homePageContainer = document.querySelector('.container');
 var gamePageContainer = document.querySelector('.game-container');
 
 const filteredGenre = [];
+
 xhr.addEventListener('load', function () {
   $startBtn.addEventListener('click', function () {
     switchViews('game');
@@ -39,6 +40,13 @@ function switchViews(view) {
     gamePageContainer.className = 'game-container view';
   }
 }
+
+var $homeBtn = document.querySelector('.home-nav');
+$homeBtn.addEventListener('click', function () {
+  const selectGenreOptions = document.querySelector('#genres');
+  selectGenreOptions.selectedIndex = 0;
+  switchViews('home');
+});
 
 function getRandomGame(filteredGenre) {
   const randomIndex = Math.floor(Math.random() * filteredGenre.length);
