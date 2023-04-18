@@ -61,30 +61,29 @@ function getRandomGame(filteredGenre) {
 }
 
 function renderGame(randomGameObj) {
-  $gameContainer.append(gameImageDiv);
+  gamePageContainer.append(gameImageDiv);
 
   gameImage.setAttribute('src', randomGameObj.thumbnail);
   gameImage.setAttribute('alt', randomGameObj.title);
   gameImageDiv.append(gameImage);
 
-  $gameContainer.append(titleRow);
+  gamePageContainer.append(titleRow);
 
   gameName.textContent = randomGameObj.title;
   titleRow.append(gameName);
 
   titleRow.append(favoriteIcon);
 
-  $gameContainer.append(gameRow2);
+  gamePageContainer.append(gameRow2);
 
   gameDetails.textContent = randomGameObj.short_description;
   gameRow2.append(gameDetails);
 
-  $gameContainer.append(nextBtnDiv);
+  gamePageContainer.append(nextBtnDiv);
 
   nextBtnDiv.append(nextBtn);
 }
 
-var $gameContainer = document.querySelector('.game-container');
 var gameImageDiv = document.createElement('div');
 gameImageDiv.className = 'game-img row column-full';
 var gameImage = document.createElement('img');
