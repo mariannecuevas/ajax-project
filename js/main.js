@@ -14,6 +14,7 @@ const filteredGenre = [];
 xhr.addEventListener('load', function () {
   $startBtn.addEventListener('click', function () {
     switchViews('game');
+    gamePageContainer.textContent = '';
     filteredGenre.length = 0;
     const selectGenre = document.querySelector('#genres');
     const index = selectGenre.selectedIndex;
@@ -32,8 +33,8 @@ xhr.send();
 
 function switchViews(view) {
   if (view === 'home') {
-    homePageContainer.className = 'container view';
     gamePageContainer.className = 'game-container hidden';
+    homePageContainer.className = 'container view';
   } else if (view === 'game') {
     homePageContainer.className = 'container hidden';
     gamePageContainer.className = 'game-container view';
@@ -61,6 +62,7 @@ function getRandomGame(filteredGenre) {
 }
 
 function renderGame(randomGameObj) {
+  gamePageContainer.textContent = '';
   gamePageContainer.append(gameImageDiv);
 
   gameImage.setAttribute('src', randomGameObj.thumbnail);
