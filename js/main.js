@@ -1,4 +1,3 @@
-
 const xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
 xhr.open('GET', 'https://free-to-play-games-database.p.rapidapi.com/api/games');
@@ -104,3 +103,8 @@ nextBtnDiv.className = 'next-btn row column-full';
 var nextBtn = document.createElement('button');
 nextBtn.className = 'next';
 nextBtn.textContent = 'Next';
+
+nextBtn.addEventListener('click', function () {
+  const randomGameObj = getRandomGame(filteredGenre);
+  renderGame(randomGameObj);
+});
