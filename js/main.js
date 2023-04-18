@@ -1,4 +1,3 @@
-
 const xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
 xhr.open('GET', 'https://free-to-play-games-database.p.rapidapi.com/api/games');
@@ -11,9 +10,11 @@ var homePageContainer = document.querySelector('.container');
 var gamePageContainer = document.querySelector('.game-container');
 
 const filteredGenre = [];
+
 xhr.addEventListener('load', function () {
   $startBtn.addEventListener('click', function () {
     switchViews('game');
+    gamePageContainer.textContent = '';
     filteredGenre.length = 0;
     const selectGenre = document.querySelector('#genres');
     const index = selectGenre.selectedIndex;
@@ -32,13 +33,27 @@ xhr.send();
 
 function switchViews(view) {
   if (view === 'home') {
-    homePageContainer.className = 'container view';
     gamePageContainer.className = 'game-container hidden';
+    homePageContainer.className = 'container view';
   } else if (view === 'game') {
     homePageContainer.className = 'container hidden';
     gamePageContainer.className = 'game-container view';
   }
 }
+
+var $logo = document.querySelector('.logo');
+$logo.addEventListener('click', function () {
+  const selectGenreOptions = document.querySelector('#genres');
+  selectGenreOptions.selectedIndex = 0;
+  switchViews('home');
+});
+
+var $homeBtn = document.querySelector('.home-nav');
+$homeBtn.addEventListener('click', function () {
+  const selectGenreOptions = document.querySelector('#genres');
+  selectGenreOptions.selectedIndex = 0;
+  switchViews('home');
+});
 
 function getRandomGame(filteredGenre) {
   const randomIndex = Math.floor(Math.random() * filteredGenre.length);
@@ -47,30 +62,30 @@ function getRandomGame(filteredGenre) {
 }
 
 function renderGame(randomGameObj) {
-  $gameContainer.append(gameImageDiv);
+  gamePageContainer.textContent = '';
+  gamePageContainer.append(gameImageDiv);
 
   gameImage.setAttribute('src', randomGameObj.thumbnail);
   gameImage.setAttribute('alt', randomGameObj.title);
   gameImageDiv.append(gameImage);
 
-  $gameContainer.append(titleRow);
+  gamePageContainer.append(titleRow);
 
   gameName.textContent = randomGameObj.title;
   titleRow.append(gameName);
 
   titleRow.append(favoriteIcon);
 
-  $gameContainer.append(gameRow2);
+  gamePageContainer.append(gameRow2);
 
   gameDetails.textContent = randomGameObj.short_description;
   gameRow2.append(gameDetails);
 
-  $gameContainer.append(nextBtnDiv);
+  gamePageContainer.append(nextBtnDiv);
 
   nextBtnDiv.append(nextBtn);
 }
 
-var $gameContainer = document.querySelector('.game-container');
 var gameImageDiv = document.createElement('div');
 gameImageDiv.className = 'game-img row column-full';
 var gameImage = document.createElement('img');
@@ -89,3 +104,8 @@ nextBtnDiv.className = 'next-btn row column-full';
 var nextBtn = document.createElement('button');
 nextBtn.className = 'next';
 nextBtn.textContent = 'Next';
+
+nextBtn.addEventListener('click', function () {
+  const randomGameObj = getRandomGame(filteredGenre);
+  renderGame(randomGameObj);
+});

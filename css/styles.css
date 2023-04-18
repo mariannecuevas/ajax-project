@@ -16,6 +16,7 @@ header {
 .logo img {
   width: 70px;
   margin: 5px 15px 0;
+  cursor: pointer;
 }
 
 .nav-links {
