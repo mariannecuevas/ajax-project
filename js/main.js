@@ -41,6 +41,13 @@ function switchViews(view) {
   }
 }
 
+var $logo = document.querySelector('.logo');
+$logo.addEventListener('click', function () {
+  const selectGenreOptions = document.querySelector('#genres');
+  selectGenreOptions.selectedIndex = 0;
+  switchViews('home');
+});
+
 var $homeBtn = document.querySelector('.home-nav');
 $homeBtn.addEventListener('click', function () {
   const selectGenreOptions = document.querySelector('#genres');
