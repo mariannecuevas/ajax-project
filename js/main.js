@@ -79,6 +79,7 @@ function renderGame(randomGameObj) {
 
   gameImage.setAttribute('src', randomGameObj.thumbnail);
   gameImage.setAttribute('alt', randomGameObj.title);
+  gameImage.className = 'game-thumb';
   gameImageDiv.append(gameImage);
 
   gamePageContainer.append(titleRow);
@@ -124,4 +125,48 @@ nextBtn.addEventListener('click', function () {
 
 favoriteIcon.addEventListener('click', function () {
   favoriteIcon.className = 'fa-solid fa-star fa-xl fav-star';
+
+  const gameTitle = document.querySelector('.game-title').textContent;
+  const gameThumbnail = document.querySelector('.game-thumb').src;
+  const gameGenre = filteredGenre[0].genre;
+  var favedGame = {};
+  favedGame.title = gameTitle;
+  favedGame.thumbnail = gameThumbnail;
+  favedGame.genre = gameGenre;
+
+  $favesList.append(favesListChild);
+
+  favesListChild.append(favImgRow);
+
+  favImgRow.append(favImgColumn);
+
+  favGameImg.className = 'fave-img';
+  favGameImg.setAttribute('src', favedGame.thumbnail);
+  favGameImg.setAttribute('alt', favedGame.title);
+  favImgColumn.append(favGameImg);
+
+  favesListChild.append(favTitleRow);
+  favTitleRow.append(favTitleColumn);
+
+  favGameName.textContent = favedGame.title;
+  favTitleRow.append(favGameName);
+  favTitleRow.append(favoritedIcon);
+
 });
+
+var $favesList = document.querySelector('.faves-list');
+var favesListChild = document.createElement('li');
+favesListChild.className = 'faves row column-full';
+var favImgRow = document.createElement('div');
+favImgRow.className = 'row';
+var favImgColumn = document.createElement('div');
+favImgColumn.className = 'column-full';
+var favGameImg = document.createElement('img');
+var favTitleRow = document.createElement('div');
+favTitleRow.className = 'fav-title row column-full';
+var favTitleColumn = document.createElement('div');
+favTitleColumn.className = 'column-full';
+var favGameName = document.createElement('h3');
+favGameName.className = 'fav-game-title';
+var favoritedIcon = document.createElement('i');
+favoritedIcon.className = 'fa-solid fa-star fa-xl faved-star';

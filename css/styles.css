@@ -119,6 +119,18 @@ button.next {
   cursor: pointer;
 }
 
-.fav-star {
+i {
   color: #00d1ff;
+}
+
+.faves-list {
+  padding: 0;
+}
+
+.fav-title {
+  max-width: 365px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
 }
