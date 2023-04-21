@@ -8,6 +8,7 @@ xhr.responseType = 'json';
 var $startBtn = document.querySelector('.start');
 var homePageContainer = document.querySelector('.container');
 var gamePageContainer = document.querySelector('.game-container');
+var favesPageContainer = document.querySelector('.faves-container');
 
 const filteredGenre = [];
 
@@ -34,10 +35,16 @@ xhr.send();
 function switchViews(view) {
   if (view === 'home') {
     gamePageContainer.className = 'game-container hidden';
+    favesPageContainer.className = 'faves-container hidden';
     homePageContainer.className = 'container view';
   } else if (view === 'game') {
     homePageContainer.className = 'container hidden';
+    favesPageContainer.className = 'faves-container hidden';
     gamePageContainer.className = 'game-container view';
+  } else if (view === 'faves') {
+    gamePageContainer.className = 'game-container hidden';
+    homePageContainer.className = 'container hidden';
+    favesPageContainer.className = 'faves-container view';
   }
 }
 
@@ -53,6 +60,11 @@ $homeBtn.addEventListener('click', function () {
   const selectGenreOptions = document.querySelector('#genres');
   selectGenreOptions.selectedIndex = 0;
   switchViews('home');
+});
+
+var $favesBtn = document.querySelector('.faves-nav');
+$favesBtn.addEventListener('click', function () {
+  switchViews('faves');
 });
 
 function getRandomGame(filteredGenre) {
