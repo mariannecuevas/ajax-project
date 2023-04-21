@@ -121,3 +121,7 @@ nextBtn.addEventListener('click', function () {
   const randomGameObj = getRandomGame(filteredGenre);
   renderGame(randomGameObj);
 });
+
+favoriteIcon.addEventListener('click', function () {
+  favoriteIcon.className = 'fa-solid fa-star fa-xl fav-star';
+});
