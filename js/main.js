@@ -15,6 +15,7 @@ const filteredGenre = [];
 xhr.addEventListener('load', function () {
   $startBtn.addEventListener('click', function () {
     switchViews('game');
+    favoriteIcon.className = 'fa-regular fa-star fa-xl fav-star';
     gamePageContainer.textContent = '';
     filteredGenre.length = 0;
     const selectGenre = document.querySelector('#genres');
@@ -63,8 +64,16 @@ $homeBtn.addEventListener('click', function () {
 });
 
 var $favesBtn = document.querySelector('.faves-nav');
+var noFaves = document.querySelector('.no-faves');
 $favesBtn.addEventListener('click', function () {
   switchViews('faves');
+  if (data.favoriteGames.length === 0) {
+    noFaves.className = 'no-faves view';
+  } else {
+    noFaves.className = 'no-faves hidden';
+    renderFavedGames();
+  }
+
 });
 
 function getRandomGame(filteredGenre) {
@@ -121,6 +130,7 @@ nextBtn.textContent = 'Next';
 nextBtn.addEventListener('click', function () {
   const randomGameObj = getRandomGame(filteredGenre);
   renderGame(randomGameObj);
+  favoriteIcon.className = 'fa-regular fa-star fa-xl fav-star';
 });
 
 favoriteIcon.addEventListener('click', function () {
@@ -134,39 +144,54 @@ favoriteIcon.addEventListener('click', function () {
   favedGame.thumbnail = gameThumbnail;
   favedGame.genre = gameGenre;
 
-  $favesList.append(favesListChild);
+  data.favoriteGames.push(favedGame);
+  data.nextFavId++;
 
-  favesListChild.append(favImgRow);
-
-  favImgRow.append(favImgColumn);
-
-  favGameImg.className = 'fave-img';
-  favGameImg.setAttribute('src', favedGame.thumbnail);
-  favGameImg.setAttribute('alt', favedGame.title);
-  favImgColumn.append(favGameImg);
-
-  favesListChild.append(favTitleRow);
-  favTitleRow.append(favTitleColumn);
-
-  favGameName.textContent = favedGame.title;
-  favTitleRow.append(favGameName);
-  favTitleRow.append(favoritedIcon);
-
+  favedGame.id = data.nextFavId;
 });
 
 var $favesList = document.querySelector('.faves-list');
-var favesListChild = document.createElement('li');
-favesListChild.className = 'faves row column-full';
-var favImgRow = document.createElement('div');
-favImgRow.className = 'row';
-var favImgColumn = document.createElement('div');
-favImgColumn.className = 'column-full';
-var favGameImg = document.createElement('img');
-var favTitleRow = document.createElement('div');
-favTitleRow.className = 'fav-title row column-full';
-var favTitleColumn = document.createElement('div');
-favTitleColumn.className = 'column-full';
-var favGameName = document.createElement('h3');
-favGameName.className = 'fav-game-title';
-var favoritedIcon = document.createElement('i');
-favoritedIcon.className = 'fa-solid fa-star fa-xl faved-star';
+function renderFavedGames() {
+  $favesList.innerHTML = '';
+  for (let i = 0; i < data.favoriteGames.length; i++) {
+    const faveGame = data.favoriteGames[i];
+
+    const favesListChild = document.createElement('li');
+    favesListChild.className = 'faves row column-full';
+    $favesList.append(favesListChild);
+
+    const favImgRow = document.createElement('div');
+    favImgRow.className = 'row';
+    favesListChild.append(favImgRow);
+
+    const favImgColumn = document.createElement('div');
+    favImgColumn.className = 'column-full';
+    favImgRow.append(favImgColumn);
+
+    const favGameImg = document.createElement('img');
+    favGameImg.className = 'fave-img';
+    favGameImg.setAttribute('src', faveGame.thumbnail);
+    favGameImg.setAttribute('alt', faveGame.title);
+    favImgColumn.append(favGameImg);
+
+    const favTitleRow = document.createElement('div');
+    favTitleRow.className = 'fav-title row column-full';
+    favesListChild.append(favTitleRow);
+
+    const favTitleColumn = document.createElement('div');
+    favTitleColumn.className = 'column-full';
+    favTitleRow.append(favTitleColumn);
+
+    const favGameName = document.createElement('h3');
+    favGameName.className = 'fav-game-title';
+    favGameName.textContent = faveGame.title;
+    favTitleRow.append(favGameName);
+
+    const favoritedIcon = document.createElement('i');
+    favoritedIcon.className = 'fa-solid fa-star fa-xl faved-star';
+
+    favTitleRow.append(favoritedIcon);
+
+    favesListChild.setAttribute('fave-game-id', faveGame.id);
+  }
+}

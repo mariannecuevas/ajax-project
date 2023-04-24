@@ -121,6 +121,7 @@ button.next {
 
 i {
   color: #00d1ff;
+  cursor: pointer;
 }
 
 .faves-list {
@@ -133,4 +134,8 @@ i {
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+}
+
+li {
+  padding-bottom: 2rem;
 }
