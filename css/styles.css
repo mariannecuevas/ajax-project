@@ -100,6 +100,10 @@ h3 {
   background-color: #343f4a;
 }
 
+.faves-container {
+  background-color: #343f4a;
+}
+
 .game-description {
   margin: 0 0 2rem;
 }
@@ -115,6 +119,23 @@ button.next {
   cursor: pointer;
 }
 
-.fav-star {
+i {
   color: #00d1ff;
+  cursor: pointer;
+}
+
+.faves-list {
+  padding: 0;
+}
+
+.fav-title {
+  max-width: 365px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+li {
+  padding-bottom: 2rem;
 }

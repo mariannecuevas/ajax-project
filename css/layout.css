@@ -18,6 +18,12 @@ font-family: 'Roboto', sans-serif; */
   padding: 35px;
 }
 
+.faves-container {
+  max-width: 390px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
 .game-row {
   max-width: 365px;
   display: flex;
@@ -45,6 +51,10 @@ font-family: 'Roboto', sans-serif; */
   .game-container {
     max-width: 600px;
     padding: 55px 0;
+  }
+
+  .faves-container {
+    max-width: 600px;
   }
 
   header {
