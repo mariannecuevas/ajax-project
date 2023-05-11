@@ -198,25 +198,25 @@ function renderFavedGames() {
     favesListChild.append(genreRow);
 
     const genreColumn = document.createElement('div');
-    genreColumn.className = 'column-full';
+    genreColumn.className = 'fav-row column-full';
     genreRow.append(genreColumn);
 
     const favGameGenre = document.createElement('p');
     favGameGenre.className = 'fav-game-genre';
     favGameGenre.textContent = 'Genre: ' + faveGame.genre;
-    genreRow.append(favGameGenre);
+    genreColumn.append(favGameGenre);
 
     const descriptionRow = document.createElement('div');
     descriptionRow.className = 'description row column-full';
     favesListChild.append(descriptionRow);
 
     const descriptionColumn = document.createElement('div');
-    descriptionColumn.className = 'column-full';
+    descriptionColumn.className = 'fav-row column-full';
     descriptionRow.append(descriptionColumn);
 
     const favGameDescription = document.createElement('p');
     favGameDescription.className = 'fav-game-description';
-    favGameDescription.textContent = faveGame.description;
+    favGameDescription.textContent = 'Description: ' + faveGame.description;
     descriptionColumn.append(favGameDescription);
 
     favesListChild.setAttribute('fave-game-id', faveGame.id);

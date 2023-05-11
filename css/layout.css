@@ -32,6 +32,15 @@ font-family: 'Roboto', sans-serif; */
   margin: 0 auto;
 }
 
+.fav-row {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 365px;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
