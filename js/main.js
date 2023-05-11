@@ -138,11 +138,13 @@ favoriteIcon.addEventListener('click', function () {
 
   const gameTitle = document.querySelector('.game-title').textContent;
   const gameThumbnail = document.querySelector('.game-thumb').src;
+  const gameDescription = document.querySelector('.game-description').textContent;
   const gameGenre = filteredGenre[0].genre;
   var favedGame = {};
   favedGame.title = gameTitle;
   favedGame.thumbnail = gameThumbnail;
   favedGame.genre = gameGenre;
+  favedGame.description = gameDescription;
 
   data.favoriteGames.push(favedGame);
   data.nextFavId++;
@@ -189,8 +191,33 @@ function renderFavedGames() {
 
     const favoritedIcon = document.createElement('i');
     favoritedIcon.className = 'fa-solid fa-star fa-xl faved-star';
-
     favTitleRow.append(favoritedIcon);
+
+    const genreRow = document.createElement('div');
+    genreRow.className = 'genre row column-full';
+    favesListChild.append(genreRow);
+
+    const genreColumn = document.createElement('div');
+    genreColumn.className = 'column-full';
+    genreRow.append(genreColumn);
+
+    const favGameGenre = document.createElement('p');
+    favGameGenre.className = 'fav-game-genre';
+    favGameGenre.textContent = 'Genre: ' + faveGame.genre;
+    genreRow.append(favGameGenre);
+
+    const descriptionRow = document.createElement('div');
+    descriptionRow.className = 'description row column-full';
+    favesListChild.append(descriptionRow);
+
+    const descriptionColumn = document.createElement('div');
+    descriptionColumn.className = 'column-full';
+    descriptionRow.append(descriptionColumn);
+
+    const favGameDescription = document.createElement('p');
+    favGameDescription.className = 'fav-game-description';
+    favGameDescription.textContent = faveGame.description;
+    descriptionColumn.append(favGameDescription);
 
     favesListChild.setAttribute('fave-game-id', faveGame.id);
   }
