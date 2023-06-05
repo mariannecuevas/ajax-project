@@ -14,12 +14,19 @@ const filteredGenre = [];
 
 xhr.addEventListener('load', function () {
   $startBtn.addEventListener('click', function () {
+    const selectGenre = document.querySelector('#genres');
+    const index = selectGenre.selectedIndex;
+    const selectedOptionValue = selectGenre.options[index].value;
+
+    if (selectedOptionValue === 'genre') {
+      return;
+    }
+
     switchViews('game');
     favoriteIcon.className = 'fa-regular fa-star fa-xl fav-star';
     gamePageContainer.textContent = '';
     filteredGenre.length = 0;
-    const selectGenre = document.querySelector('#genres');
-    const index = selectGenre.selectedIndex;
+
     const selectedOptionText = selectGenre.options[index].textContent;
     for (let i = 0; i < xhr.response.length; i++) {
       if (xhr.response[i].genre === selectedOptionText) {
