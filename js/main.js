@@ -35,17 +35,20 @@ xhr.send();
 
 function switchViews(view) {
   if (view === 'home') {
-    gamePageContainer.className = 'game-container hidden';
-    favesPageContainer.className = 'faves-container hidden';
-    homePageContainer.className = 'container view';
+    gamePageContainer.classList.add('hidden');
+    favesPageContainer.classList.add('hidden');
+    homePageContainer.classList.remove('hidden');
+    homePageContainer.classList.add('view');
   } else if (view === 'game') {
-    homePageContainer.className = 'container hidden';
-    favesPageContainer.className = 'faves-container hidden';
-    gamePageContainer.className = 'game-container view';
+    homePageContainer.classList.add('hidden');
+    favesPageContainer.classList.add('hidden');
+    gamePageContainer.classList.remove('hidden');
+    gamePageContainer.classList.add('view');
   } else if (view === 'faves') {
-    gamePageContainer.className = 'game-container hidden';
-    homePageContainer.className = 'container hidden';
-    favesPageContainer.className = 'faves-container view';
+    gamePageContainer.classList.add('hidden');
+    homePageContainer.classList.add('hidden');
+    favesPageContainer.classList.remove('hidden');
+    favesPageContainer.classList.add('view');
   }
 }
 
@@ -68,12 +71,12 @@ var noFaves = document.querySelector('.no-faves');
 $favesBtn.addEventListener('click', function () {
   switchViews('faves');
   if (data.favoriteGames.length === 0) {
-    noFaves.className = 'no-faves view';
+    noFaves.classList.add('view');
   } else {
-    noFaves.className = 'no-faves hidden';
+    noFaves.classList.add('hidden');
+    noFaves.classList.remove('view');
     renderFavedGames();
   }
-
 });
 
 function getRandomGame(filteredGenre) {
