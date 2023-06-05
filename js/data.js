@@ -1,7 +1,8 @@
 var data = {
   view: 'home',
   favoriteGames: [],
-  nextFavId: 0
+  nextFavId: 0,
+  gameEditing: null
 };
 
 window.addEventListener('beforeunload', function (event) {
