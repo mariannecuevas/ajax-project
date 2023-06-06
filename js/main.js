@@ -14,12 +14,19 @@ const filteredGenre = [];
 
 xhr.addEventListener('load', function () {
   $startBtn.addEventListener('click', function () {
+    const selectGenre = document.querySelector('#genres');
+    const index = selectGenre.selectedIndex;
+    const selectedOptionValue = selectGenre.options[index].value;
+
+    if (selectedOptionValue === 'genre') {
+      return;
+    }
+
     switchViews('game');
     favoriteIcon.className = 'fa-regular fa-star fa-xl fav-star';
     gamePageContainer.textContent = '';
     filteredGenre.length = 0;
-    const selectGenre = document.querySelector('#genres');
-    const index = selectGenre.selectedIndex;
+
     const selectedOptionText = selectGenre.options[index].textContent;
     for (let i = 0; i < xhr.response.length; i++) {
       if (xhr.response[i].genre === selectedOptionText) {
@@ -35,17 +42,20 @@ xhr.send();
 
 function switchViews(view) {
   if (view === 'home') {
-    gamePageContainer.className = 'game-container hidden';
-    favesPageContainer.className = 'faves-container hidden';
-    homePageContainer.className = 'container view';
+    gamePageContainer.classList.add('hidden');
+    favesPageContainer.classList.add('hidden');
+    homePageContainer.classList.remove('hidden');
+    homePageContainer.classList.add('view');
   } else if (view === 'game') {
-    homePageContainer.className = 'container hidden';
-    favesPageContainer.className = 'faves-container hidden';
-    gamePageContainer.className = 'game-container view';
+    homePageContainer.classList.add('hidden');
+    favesPageContainer.classList.add('hidden');
+    gamePageContainer.classList.remove('hidden');
+    gamePageContainer.classList.add('view');
   } else if (view === 'faves') {
-    gamePageContainer.className = 'game-container hidden';
-    homePageContainer.className = 'container hidden';
-    favesPageContainer.className = 'faves-container view';
+    gamePageContainer.classList.add('hidden');
+    homePageContainer.classList.add('hidden');
+    favesPageContainer.classList.remove('hidden');
+    favesPageContainer.classList.add('view');
   }
 }
 
@@ -68,12 +78,12 @@ var noFaves = document.querySelector('.no-faves');
 $favesBtn.addEventListener('click', function () {
   switchViews('faves');
   if (data.favoriteGames.length === 0) {
-    noFaves.className = 'no-faves view';
+    noFaves.classList.add('view');
   } else {
-    noFaves.className = 'no-faves hidden';
+    noFaves.classList.add('hidden');
+    noFaves.classList.remove('view');
     renderFavedGames();
   }
-
 });
 
 function getRandomGame(filteredGenre) {
@@ -138,11 +148,13 @@ favoriteIcon.addEventListener('click', function () {
 
   const gameTitle = document.querySelector('.game-title').textContent;
   const gameThumbnail = document.querySelector('.game-thumb').src;
+  const gameDescription = document.querySelector('.game-description').textContent;
   const gameGenre = filteredGenre[0].genre;
   var favedGame = {};
   favedGame.title = gameTitle;
   favedGame.thumbnail = gameThumbnail;
   favedGame.genre = gameGenre;
+  favedGame.description = gameDescription;
 
   data.favoriteGames.push(favedGame);
   data.nextFavId++;
@@ -189,9 +201,87 @@ function renderFavedGames() {
 
     const favoritedIcon = document.createElement('i');
     favoritedIcon.className = 'fa-solid fa-star fa-xl faved-star';
-
     favTitleRow.append(favoritedIcon);
 
+    const genreRow = document.createElement('div');
+    genreRow.className = 'genre row column-full';
+    favesListChild.append(genreRow);
+
+    const genreColumn = document.createElement('div');
+    genreColumn.className = 'fav-row column-full';
+    genreRow.append(genreColumn);
+
+    const favGameGenre = document.createElement('p');
+    favGameGenre.className = 'fav-game-genre';
+    favGameGenre.textContent = 'Genre: ' + faveGame.genre;
+    genreColumn.append(favGameGenre);
+
+    const descriptionRow = document.createElement('div');
+    descriptionRow.className = 'description row column-full';
+    favesListChild.append(descriptionRow);
+
+    const descriptionColumn = document.createElement('div');
+    descriptionColumn.className = 'fav-row column-full';
+    descriptionRow.append(descriptionColumn);
+
+    const favGameDescription = document.createElement('p');
+    favGameDescription.className = 'fav-game-description';
+    favGameDescription.textContent = 'Description: ' + faveGame.description;
+    descriptionColumn.append(favGameDescription);
+
     favesListChild.setAttribute('fave-game-id', faveGame.id);
+
+    favoritedIcon.addEventListener('click', function (event) {
+      const gameElement = event.target.closest('li');
+      data.gameEditing = gameElement;
+      openModal();
+    });
   }
 }
+
+var modal = document.querySelector('.modal');
+var cancelBtn = document.querySelector('.cancel');
+var confirmBtn = document.querySelector('.confirm-btn');
+
+function openModal() {
+  modal.classList.remove('hidden');
+}
+
+function closeModal() {
+  modal.classList.add('hidden');
+}
+
+cancelBtn.addEventListener('click', function () {
+  closeModal();
+});
+
+confirmBtn.addEventListener('click', function () {
+  const selectedGame = data.gameEditing;
+  const selectedGameId = selectedGame.getAttribute('fave-game-id');
+
+  var liNode = document.querySelectorAll('.faves');
+
+  for (var i = 0; i < liNode.length; i++) {
+    if (liNode[i].getAttribute('fave-game-id') === selectedGameId) {
+      liNode[i].remove();
+    }
+  }
+
+  for (var j = 0; j < data.favoriteGames.length; j++) {
+    if (data.favoriteGames[j].id.toString() === selectedGameId) {
+      data.favoriteGames.splice(j, 1);
+      break;
+    }
+  }
+
+  closeModal();
+
+  if (data.favoriteGames.length === 0) {
+    noFaves.classList.remove('hidden');
+    noFaves.classList.add('view');
+  } else {
+    noFaves.classList.add('hidden');
+    noFaves.classList.remove('view');
+    renderFavedGames();
+  }
+});
