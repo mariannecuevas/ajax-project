@@ -93,22 +93,26 @@ function getRandomGame(filteredGenre) {
 }
 
 function renderGame(randomGameObj) {
+  gamePageContainer.classList.add('hidden');
   gamePageContainer.textContent = '';
-  gamePageContainer.append(gameImageDiv);
+  gamePageContainer.append(gameImageDiv, gameDetailsContainer);
 
   gameImage.setAttribute('src', randomGameObj.thumbnail);
   gameImage.setAttribute('alt', randomGameObj.title);
   gameImage.className = 'game-thumb';
+  gameImage.onload = function () {
+    gamePageContainer.classList.remove('hidden');
+  };
   gameImageDiv.append(gameImage);
 
-  gamePageContainer.append(titleRow);
+  gameDetailsContainer.append(titleRow);
 
   gameName.textContent = randomGameObj.title;
   titleRow.append(gameName);
 
   titleRow.append(favoriteIcon);
 
-  gamePageContainer.append(gameRow2);
+  gameDetailsContainer.append(gameRow2);
 
   gameDetails.textContent = randomGameObj.short_description;
   gameRow2.append(gameDetails);
@@ -136,6 +140,8 @@ nextBtnDiv.className = 'next-btn row column-full';
 var nextBtn = document.createElement('button');
 nextBtn.className = 'next';
 nextBtn.textContent = 'Next';
+var gameDetailsContainer = document.createElement('div');
+gameDetailsContainer.className = 'game-details';
 
 nextBtn.addEventListener('click', function () {
   const randomGameObj = getRandomGame(filteredGenre);
