@@ -162,10 +162,20 @@ favoriteIcon.addEventListener('click', function () {
   favedGame.genre = gameGenre;
   favedGame.description = gameDescription;
 
-  data.favoriteGames.push(favedGame);
-  data.nextFavId++;
+  let isDuplicate = false;
+  for (let i = 0; i < data.favoriteGames.length; i++) {
+    const game = data.favoriteGames[i];
+    if (game.title === favedGame.title && game.thumbnail === favedGame.thumbnail) {
+      isDuplicate = true;
+      break;
+    }
+  }
 
-  favedGame.id = data.nextFavId;
+  if (!isDuplicate) {
+    data.favoriteGames.push(favedGame);
+    data.nextFavId++;
+    favedGame.id = data.nextFavId;
+  }
 });
 
 var $favesList = document.querySelector('.faves-list');
